@@ -13,15 +13,12 @@ namespace ASCOMCore
         public bool Connected { get; set; }
         public string Description
         {
-            get
-            {
-                throw new ASCOM.PropertyNotImplementedException("Description", false);
-            }
+            get { return "My telescope driver"; }
         }
         public string DriverInfo => "ASCOM .NET Core telescope simulator driver v 1.0.0.0";
 
         public string DriverVersion => "1.0.0.0";
-        public short InterfaceVersion => 3;
+        public short InterfaceVersion => 1;
         public string Name => "ASCOM .NET Core telescope simulator";
         public ArrayList SupportedActions { get; }
         public AlignmentModes AlignmentMode { get; }

@@ -4,39 +4,72 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:63080",
-      "sslPort": 44390
+      "applicationUrl": "http://localhost:55881",
+      "sslPort": 44322
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ASCOMCore": {
+    "WebApplication2": {
       "commandName": "Project",
-      "launchUrl": "api/values",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:5000"
-
-
-      //"WebApplication1": {
-      //  "commandName": "Project",
-      //  "launchBrowser": true,
-      //  "launchUrl": "weatherforecast",
-      //  "applicationUrl": "https://localhost:5001;http://localhost:5000",
-      //  "environmentVariables": {
-      //    "ASPNETCORE_ENVIRONMENT": "Development"
-      //  }
-      //}
-
-
+      }
     }
   }
 }
+
+
+
+
+//{
+//  "$schema": "http://json.schemastore.org/launchsettings.json",
+//  "iisSettings": {
+//    "windowsAuthentication": false,
+//    "anonymousAuthentication": true,
+//    "iisExpress": {
+//      "applicationUrl": "http://localhost:63080",
+//      "sslPort": 5001
+//      //  }
+//    },
+//    //"profiles": {
+//    //  "IIS Express": {
+//    //    "commandName": "IISExpress",
+//    //    "launchBrowser": true,
+//    //    "launchUrl": "api/values",
+//    //    "environmentVariables": {
+//    //      "ASPNETCORE_ENVIRONMENT": "Development"
+//    //    }
+//    //  },
+//    //  "ASCOMCore": {
+//    //    "commandName": "Project",
+//    //    "launchUrl": "api/values",
+//    //    "environmentVariables": {
+//    //      "ASPNETCORE_ENVIRONMENT": "Development"
+//    //    },
+//    //    "applicationUrl": "http://localhost:5000"
+
+
+//    "WebApplication1": {
+//      "commandName": "Project",
+//      "launchBrowser": true,
+//      "launchUrl": "api/values",
+//      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+//      "environmentVariables": {
+//        "ASPNETCORE_ENVIRONMENT": "Development"
+//      }
+//    }
+
+
+//  }
+//} }

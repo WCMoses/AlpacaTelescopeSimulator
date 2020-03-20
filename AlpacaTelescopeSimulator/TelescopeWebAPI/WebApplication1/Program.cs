@@ -22,6 +22,9 @@ namespace ASCOMCore
 
         public static void Main(string[] args)
         {
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
+
             Simulator = new TelescopeSimulator();
             TraceLogger = new TraceLogger("TelescopeSimulator");
             TraceLogger.Enabled = true;
@@ -54,6 +57,11 @@ namespace ASCOMCore
 
 
             //CreateHostBuilder(args).Build().Run();
+        }
+
+        private static void MyHandler(object sender, UnhandledExceptionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

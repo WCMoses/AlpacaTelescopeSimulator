@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\testDev\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj": {}
+    "C:\\Repos\\AlpacaTelescopeSimulator\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj": {}
   },
   "projects": {
-    "C:\\testDev\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj": {
+    "C:\\Repos\\AlpacaTelescopeSimulator\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\testDev\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj",
+        "projectUniqueName": "C:\\Repos\\AlpacaTelescopeSimulator\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj",
         "projectName": "AlpacaTelescopeSimulator",
-        "projectPath": "C:\\testDev\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj",
+        "projectPath": "C:\\Repos\\AlpacaTelescopeSimulator\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\AlpacaTelescopeSimulator.csproj",
         "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
-        "outputPath": "C:\\testDev\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Repos\\AlpacaTelescopeSimulator\\AlpacaTelescopeSimulator\\TelescopeWebAPI\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

@@ -4,7 +4,7 @@ using ASCOM.Utilities;
 
 namespace ASCOMCore.Controllers
 {
-    [Route("api/v1/FilterWheel/0/[controller]")]
+    [Route("telescope/{device_number}/[controller]")]
     [ApiController]
     public class ActionController : ControllerBase
     {
