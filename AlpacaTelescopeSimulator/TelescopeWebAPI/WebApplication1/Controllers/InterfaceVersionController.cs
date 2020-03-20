@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASCOMCore.Controllers
 {
-    [Route("telescope/{id}/[controller]")]
+    [Route("api/v1/telescope/{id}/[controller]")]
     [ApiController]
     public class InterfaceVersionController : ControllerBase
     {

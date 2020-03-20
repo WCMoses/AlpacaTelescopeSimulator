@@ -9,7 +9,7 @@ using ASCOMCore;
 namespace ASCOMCore.Controllers
 {
     using ASCOMCore;
-[Route("telescope/{device_number}/[controller]")]
+[Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
     public class siderialtimeController : ControllerBase
     {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using ASCOMCore;
 namespace ASCOMCore.Controllers  //TODO: implement
 {
-    [Route("telescope/{device_number}/[controller]")]
+    [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
     public class equatorialsystemController : ControllerBase
     {

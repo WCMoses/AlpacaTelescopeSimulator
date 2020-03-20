@@ -10,7 +10,7 @@ using ASCOMCore.Response_Classes;
 
 namespace ASCOMCore.Controllers
 {
-    [Route("telescope/{device_number}/[controller]")]
+    [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
     public class destinationsideOfpierController : ControllerBase
     {

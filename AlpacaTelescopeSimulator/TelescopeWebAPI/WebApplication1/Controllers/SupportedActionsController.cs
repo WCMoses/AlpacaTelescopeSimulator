@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASCOMCore.Controllers
 {
-    [Route("telescope/{device_number}/[controller]")]
+    [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
     public class SupportedActionsController : ControllerBase
     {
@@ -13,14 +13,20 @@ namespace ASCOMCore.Controllers
         [HttpGet()]
         public ActionResult<StringListResponse> Get(int ClientID, int ClientTransactionID)
         {
+            List<string> list = new List<string>();
+            string concatenatedList  = null;
             try
             {
-                List<string> list = new List<string>();
-                foreach (string supportedAction in Program.Simulator.SupportedActions)
+
+                if (list != null)
                 {
-                    list.Add(supportedAction);
+                    foreach (string supportedAction in Program.Simulator.SupportedActions)
+                    {
+                        list.Add(supportedAction);
+                    }
+                     concatenatedList = string.Join(" ", list);
                 }
-                string concatenatedList = string.Join(" ", list);
+
                 Program.TraceLogger.LogMessage(methodName + " Get", concatenatedList);
                 return new StringListResponse(ClientTransactionID, ClientID, methodName, list);
             }

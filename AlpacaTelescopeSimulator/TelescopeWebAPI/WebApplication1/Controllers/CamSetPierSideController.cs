@@ -9,7 +9,7 @@ using ASCOMCore;
 
 namespace ASCOMCore.Controllers
 {
-    [Route("telescope/{device_number}/[controller]")]
+    [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
     public class cansetpiersideController : ControllerBase
     {
