@@ -18,7 +18,7 @@ namespace ASCOMCore.Controllers
             try
             {
 
-                if (list != null)
+                if (list != null && list.Count>0)
                 {
                     foreach (string supportedAction in Program.Simulator.SupportedActions)
                     {

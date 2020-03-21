@@ -21,7 +21,7 @@ namespace ASCOMCore.Controllers
         }
 
 
-        // PUT: api/DeclinationRate/5
+      
         [HttpPut]
         public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] double SiteLatitude)
         {

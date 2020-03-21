@@ -8,30 +8,30 @@ using ASCOMCore;
 
 namespace ASCOMCore.Controllers
 {
-    [Route("api/v1/telescope/{device_number}/[controller]")]
+   [Route("apis/v1/telescope/{device_number}/[controller]")]
     [ApiController]
-    public class RightAscensionController : ControllerBase
+    public class AlignmentModeController : ControllerBase
     {
-        private string methodName = nameof(RightAscensionController).Substring(0, nameof(RightAscensionController).IndexOf("Controller"));
+        private string methodName = nameof(AlignmentModeController).Substring(0, nameof(AlignmentModeController).IndexOf("Controller"));
 
+        
         [HttpGet]
-        public ActionResult<DoubleResponse> Get(int ClientID, int ClientTransactionID)
+        public ActionResult<AlignmentModeResponse> Get(int ClientID, int ClientTransactionID)
         {
             try
             {
-                double result = Program.Simulator.RightAscension;
+                var result = Program.Simulator.AlignmentMode;
                 Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
-                return new DoubleResponse(ClientTransactionID, ClientID, methodName, result);
+                return new AlignmentModeResponse(ClientTransactionID, ClientID, methodName, result);
             }
             catch (Exception ex)
             {
                 Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
-                DoubleResponse response = new DoubleResponse(ClientTransactionID, ClientID, methodName, 0);
+                var response = new AlignmentModeResponse(ClientTransactionID, ClientID, methodName, 0);
                 response.ErrorMessage = ex.Message;
                 response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
                 return response;
-            } 
+            }
         }
-
     }
 }

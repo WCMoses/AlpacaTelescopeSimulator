@@ -10,28 +10,28 @@ namespace ASCOMCore.Controllers
 {
     [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
-    public class RightAscensionController : ControllerBase
+    public class CanUnParkController : ControllerBase
     {
-        private string methodName = nameof(RightAscensionController).Substring(0, nameof(RightAscensionController).IndexOf("Controller"));
+        private string methodName = nameof(CanUnParkController).Substring(0, nameof(CanUnParkController).IndexOf("Controller"));
 
+        // GET: api/AtHome
         [HttpGet]
-        public ActionResult<DoubleResponse> Get(int ClientID, int ClientTransactionID)
+        public ActionResult<BoolResponse> Get(int ClientID, int ClientTransactionID)
         {
             try
             {
-                double result = Program.Simulator.RightAscension;
+                bool result = Program.Simulator.CanPark;
                 Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
-                return new DoubleResponse(ClientTransactionID, ClientID, methodName, result);
+                return new BoolResponse(ClientTransactionID, ClientID, methodName, result);
             }
             catch (Exception ex)
             {
                 Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
-                DoubleResponse response = new DoubleResponse(ClientTransactionID, ClientID, methodName, 0);
+                BoolResponse response = new BoolResponse(ClientTransactionID, ClientID, methodName, false);
                 response.ErrorMessage = ex.Message;
                 response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
                 return response;
-            } 
+            }
         }
-
     }
 }

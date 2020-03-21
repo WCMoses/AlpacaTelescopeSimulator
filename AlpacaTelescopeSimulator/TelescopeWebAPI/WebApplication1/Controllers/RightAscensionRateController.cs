@@ -10,9 +10,9 @@ namespace ASCOMCore.Controllers
 {
     [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
-    public class rightsscensionrateController : ControllerBase
+    public class RightAscensionRateController : ControllerBase
     {
-        private string methodName = nameof(rightsscensionrateController).Substring(0, nameof(rightsscensionrateController).IndexOf("Controller"));
+        private string methodName = nameof(RightAscensionRateController).Substring(0, nameof(RightAscensionRateController).IndexOf("Controller"));
         [HttpGet]
         public ActionResult<DoubleResponse> Get(int ClientID, int ClientTransactionID)
         {
