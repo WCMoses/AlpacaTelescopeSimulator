@@ -19,13 +19,13 @@ namespace ASCOMCore.Controllers
         {
             try
             {
-                
-                Program.TraceLogger.LogMessage(methodName + " Get", "");
+                Program.TraceLogger.LogMessage(methodName + " Put", "");
+                Program.Simulator.FindHome();
                 return new MethodResponse(ClientTransactionID, ClientID, methodName);
             }
             catch (Exception ex)
             {
-                Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
+                Program.TraceLogger.LogMessage(methodName + " Put", string.Format("Exception: {0}", ex.ToString()));
                 var response = new MethodResponse(ClientTransactionID, ClientID, methodName);
                 response.ErrorMessage = ex.Message;
                 response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;

@@ -16,8 +16,21 @@ namespace ASCOMCore.Controllers
         [HttpGet]
         public ActionResult<DoubleResponse> Get(int ClientID, int ClientTransactionID)
         {
-            DoubleResponse result = new DoubleResponse(ClientID, ClientTransactionID, methodName, 100);
-            return result;
+            try
+            {
+                var result = Program.Simulator.SiteLatitude;
+                Program.TraceLogger.LogMessage(methodName + " Get", "");
+
+                return new DoubleResponse(ClientTransactionID, ClientID, methodName, result);
+            }
+            catch (Exception ex)
+            {
+                Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
+                var response = new DoubleResponse(ClientTransactionID, ClientID, methodName, 0);
+                response.ErrorMessage = ex.Message;
+                response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
+                return response;
+            }
         }
 
 
@@ -25,7 +38,10 @@ namespace ASCOMCore.Controllers
         [HttpPut]
         public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] double SiteLatitude)
         {
-            return new MethodResponse(ClientTransactionID, ClientID, methodName);
+            Program.TraceLogger.LogMessage(methodName + " Put", "");
+            Program.Simulator.SiteLatitude = SiteLatitude;
+
+            return new MethodResponse(ClientTransactionID, ClientID, SiteLatitude.ToString());
         }
     }
 }

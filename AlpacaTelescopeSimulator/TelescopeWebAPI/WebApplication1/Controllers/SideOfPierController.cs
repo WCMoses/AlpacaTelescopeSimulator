@@ -38,9 +38,12 @@ namespace ASCOMCore.Controllers
 
         // PUT: api/SideOfPier/5
         [HttpPut]
-        public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] int SideOfPier)
+        public ActionResult<PierSideResponse> Put(int ClientID, int ClientTransactionID, [FromForm] ASCOM.DeviceInterface.PierSide SideOfPier)
         {
-            return new MethodResponse(ClientTransactionID, ClientID, methodName);
+            Program.TraceLogger.LogMessage(methodName + " Put", "");
+            Program.Simulator.SideOfPier = SideOfPier;
+
+            return new PierSideResponse(ClientTransactionID, ClientID, SideOfPier);
         }
 
 

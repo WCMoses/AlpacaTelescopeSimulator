@@ -16,7 +16,21 @@ namespace ASCOMCore.Controllers
         [HttpGet]
         public ActionResult<BoolResponse> Get(int ClientID, int ClientTransactionID)
         {
-            return new BoolResponse(ClientID, ClientTransactionID, methodName, true);
+            try
+            {
+                var result = Program.Simulator.Slewing;
+                Program.TraceLogger.LogMessage(methodName + " Get", "");
+
+                return new BoolResponse(ClientTransactionID, ClientID, methodName, result);
+            }
+            catch (Exception ex)
+            {
+                Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
+                var response = new BoolResponse(ClientTransactionID, ClientID, methodName, true);  //TODO:<-fix
+                response.ErrorMessage = ex.Message;
+                response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
+                return response;
+            }
         }
     }
 }

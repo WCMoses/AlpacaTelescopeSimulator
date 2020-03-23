@@ -11,12 +11,27 @@ namespace ASCOMCore.Controllers  //TODO: implement
     [ApiController]
     public class equatorialsystemController : ControllerBase
     {
-        private string methodName = nameof(canslewController).Substring(0, nameof(canslewController).IndexOf("Controller"));
+        private string methodName = nameof(equatorialsystemController).Substring(0, nameof(equatorialsystemController).IndexOf("Controller"));
         // GET: api/EquatorialSystem
         [HttpGet]
         public ActionResult<IntResponse> Get(int ClientID, int ClientTransactionID)
         {
-            return new IntResponse(ClientID, ClientTransactionID, methodName, 2);
+            try
+            {
+                //TODO: Not fullyimplemented
+                Program.TraceLogger.LogMessage(methodName + " Get", "");
+                var result = Program.Simulator.EquatorialSystem;
+                return new IntResponse(ClientTransactionID, ClientID, methodName,5);
+            }
+            catch (Exception ex)
+            {
+                Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
+                var response = new IntResponse(ClientTransactionID, ClientID, methodName,5);
+                response.ErrorMessage = ex.Message;
+                response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
+                return response;
+            }
+
         }
 
 

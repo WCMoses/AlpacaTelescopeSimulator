@@ -17,13 +17,31 @@ namespace ASCOMCore.Controllers
         [HttpGet]
         public ActionResult<IntResponse> Get(int ClientID, int ClientTransactionID)
         {
-            return new IntResponse(ClientID, ClientTransactionID, methodName, 2);
+            try
+            {
+                var result = Program.Simulator.SlewSettleTime;
+                Program.TraceLogger.LogMessage(methodName + " Get", "");
+
+                return new IntResponse(ClientTransactionID, ClientID, methodName, result);
+            }
+            catch (Exception ex)
+            {
+                Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
+                var response = new IntResponse(ClientTransactionID, ClientID, methodName, 0);
+                response.ErrorMessage = ex.Message;
+                response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
+                return response;
+            }
         }
 
         [HttpPut]
-        public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] int SlewSettleTime)
+        public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] short SlewSettleTime)
         {
-            return new MethodResponse(ClientTransactionID, ClientID, methodName);
+            Program.TraceLogger.LogMessage(methodName + " Put", "");
+            Program.Simulator.SlewSettleTime = SlewSettleTime;
+
+            return new MethodResponse(ClientTransactionID, ClientID, SlewSettleTime.ToString());
+
         }
     }
 }

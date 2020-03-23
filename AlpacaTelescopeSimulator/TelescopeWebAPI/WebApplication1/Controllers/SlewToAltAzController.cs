@@ -17,7 +17,11 @@ namespace ASCOMCore.Controllers
         [HttpPut]
         public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] double Altitude, [FromForm] double Azimuth)
         {
-            return new MethodResponse(ClientTransactionID, ClientID, methodName);
+            Program.TraceLogger.LogMessage(methodName + " Put", "");
+            Program.Simulator.SlewToAltAz(Azimuth, Altitude);
+
+            return new MethodResponse(ClientTransactionID, ClientID, "SlewToAltAz");
+
         }
     }
 }

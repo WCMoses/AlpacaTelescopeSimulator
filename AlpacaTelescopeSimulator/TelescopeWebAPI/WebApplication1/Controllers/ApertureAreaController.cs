@@ -20,7 +20,7 @@ namespace ASCOMCore.Controllers
         {
             try
             {
-                double aperature = Program.Simulator.Altitude;
+                double aperature = Program.Simulator.ApertureArea;
                 Program.TraceLogger.LogMessage(methodName + " Get", aperature.ToString());
                 return new DoubleResponse(ClientTransactionID, ClientID, methodName, aperature);
             }

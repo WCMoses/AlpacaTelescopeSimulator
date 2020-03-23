@@ -18,6 +18,7 @@ namespace ASCOMCore.Controllers
         [HttpPut]  //TODO: implememt
         public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] int axis, [FromForm] double rate)
         {
+            //TODO: Not fully implemented yet
             Program.TraceLogger.LogMessage(methodName + " Get", "");
             ASCOM.DeviceInterface.TelescopeAxes a = TelescopeAxes.axisPrimary;
             Program.Simulator.MoveAxis(a,rate); //<<---  implement

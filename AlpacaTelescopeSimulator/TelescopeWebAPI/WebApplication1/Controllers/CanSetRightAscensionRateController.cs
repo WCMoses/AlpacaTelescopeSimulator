@@ -20,7 +20,7 @@ namespace ASCOMCore.Controllers
         {
             try
             {
-                bool CanSetRA = Program.Simulator.CanSetPierSide;
+                bool CanSetRA = Program.Simulator.CanSetRightAscensionRate;
                 Program.TraceLogger.LogMessage(methodName + " Get", CanSetRA.ToString());
                 return new BoolResponse(ClientTransactionID, ClientID, methodName, CanSetRA);
             }

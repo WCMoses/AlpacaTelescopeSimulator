@@ -65,19 +65,19 @@ namespace ASCOMCore
         }
         public bool CanPulseGuide
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanSetDeclinationRate
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanSetGuideRates
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanSetPark
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanSetPierSide
         {
@@ -85,16 +85,16 @@ namespace ASCOMCore
         }
         public bool CanSetRightAscensionRate
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanSetTracking
         {
-            get { return false; }
+            get { return true; }
         }
 
         public bool CanSetRightAscension
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanSlew
         {
@@ -114,17 +114,22 @@ namespace ASCOMCore
         }
         public bool CanSync
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanSyncAltAz
         {
-            get { return false; }
+            get { return true; }
         }
         public bool CanUnpark
         {
-            get { return false; }
+            get { return true; }
         }
-        public double Declination { get; }
+        private double _dec=0;
+        public double Declination
+        {
+            get { return _dec;}
+            set { _dec = value; }
+        }
         public double DeclinationRate { get; set; }
         public bool DoesRefraction { get; set; }
         public EquatorialCoordinateType EquatorialSystem { get; }
@@ -136,9 +141,18 @@ namespace ASCOMCore
             get { return true; }
         }
 
+        private double _ra = 90;
         public double RightAscension
         {
-            get { return (double)12.1234; }
+            get { return _ra;}
+            set
+            {
+                if (value>24 || value<0)
+                {
+                    throw new ASCOM.InvalidValueException();
+                }
+                _ra = value;
+            }
         }
         public double RightAscensionRate { get; set; }
         public PierSide SideOfPier { get; set; }
@@ -159,7 +173,7 @@ namespace ASCOMCore
             {
                 if (_siteElevation<= -300)
                 {
-                    throw new ArgumentException();
+                    throw new ASCOM.InvalidValueException();
                 }
                 _siteElevation = value;
             }
@@ -173,7 +187,7 @@ namespace ASCOMCore
             {
                 if (_siteLatitude>90 || _siteLatitude <-90)
                 {
-                    throw new ArgumentException();
+                    throw new ASCOM.InvalidValueException();
                 }
                 _siteLatitude = value;
             }
@@ -190,14 +204,28 @@ namespace ASCOMCore
         public double TargetDeclination
         {
             get { return _targetDec;}
-            set { _targetDec = value; }
+            set
+            {
+                if (value>90 || value<-90)
+                {
+                    throw new ASCOM.InvalidValueException();
+                }
+                _targetDec = value;
+            }
         }
 
         private double _targetRA = 23;
         public double TargetRightAscension
         {
             get { return _targetRA;}
-            set { _targetRA = value; }
+            set
+            {
+                if (_targetRA>24  || _targetRA<0)
+                {
+                    throw new ASCOM.InvalidValueException();
+                }
+                _targetRA = value;
+            }
         }
         public bool Tracking { get; set; }
         public DriveRates TrackingRate { get; set; }
@@ -217,62 +245,63 @@ namespace ASCOMCore
 
         public string Action(string ActionName, string ActionParameters)
         {
-            throw new ASCOM.MethodNotImplementedException("Action");
+            return "Dummy Action";
         }
 
         public void CommandBlind(string Command, bool Raw = false)
         {
-            throw new ASCOM.MethodNotImplementedException("CommandBlind");
+           
         }
 
         public bool CommandBool(string Command, bool Raw = false)
         {
-            throw new ASCOM.MethodNotImplementedException("CommandBool");
+            return true;
         }
 
         public string CommandString(string Command, bool Raw = false)
         {
-            throw new ASCOM.MethodNotImplementedException("CommandString");
+            return "Dummy Value";
         }
 
         public void Dispose()
         {
-            throw new ASCOM.MethodNotImplementedException("Dispose");
+           
         }
 
         public void AbortSlew()
         {
-            throw new ASCOM.MethodNotImplementedException("AbortSlew");
+           
         }
 
         public IAxisRates AxisRates(TelescopeAxes Axis)
         {
-            throw new ASCOM.MethodNotImplementedException("IAxisRates");
+            return null; //TODO:  Huh??;
         }
 
         public bool CanMoveAxis(TelescopeAxes Axis)
         {
-            throw new ASCOM.MethodNotImplementedException("CanMoveAxis");
+            return true;
         }
 
         public PierSide DestinationSideOfPier(double RightAscension, double Declination)
         {
-            throw new ASCOM.MethodNotImplementedException("DestinationSideOfPier");
+
+            return PierSide.pierEast;
         }
 
         public void FindHome()
         {
-            throw new ASCOM.MethodNotImplementedException("FindHome");
+            
         }
 
         public void MoveAxis(TelescopeAxes Axis, double Rate)
         {
-            throw new ASCOM.MethodNotImplementedException("MoveAxis");
+           
         }
 
         public void Park()
         {
-            // throw new ASCOM.MethodNotImplementedException("Park");
+            
         }
 
         public void PulseGuide(GuideDirections Direction, int Duration)
@@ -282,27 +311,27 @@ namespace ASCOMCore
 
         public void SetPark()
         {
-            throw new ASCOM.MethodNotImplementedException("SetPark");
+           
         }
 
         public void SlewToAltAz(double Azimuth, double Altitude)
         {
-            throw new ASCOM.MethodNotImplementedException("SlewToAltAz");
+           
         }
 
         public void SlewToAltAzAsync(double Azimuth, double Altitude)
         {
-            throw new ASCOM.MethodNotImplementedException("SlewToAltAzAsync");
+            
         }
 
         public void SlewToCoordinates(double RightAscension, double Declination)
         {
-            if (RightAscension<0 || RightAscension==25)
-            {
-                throw  new ArgumentException();
-            }
+            //if (RightAscension<0 || RightAscension==25)
+            //{
+                //throw  new ArgumentException();
+            //}
 
-            if (DeclinationRate<-99 || DeclinationRate > 99)
+            if (DeclinationRate<0 || DeclinationRate > 90)
             {
                 throw new ArgumentException();
             }
@@ -310,12 +339,12 @@ namespace ASCOMCore
 
         public void SlewToCoordinatesAsync(double RightAscension, double Declination)
         {
-           
+          
         }
 
         public void SlewToTarget()
         {
-            
+           // throw new ArgumentException();
         }
 
         public void SlewToTargetAsync()
@@ -325,22 +354,22 @@ namespace ASCOMCore
 
         public void SyncToAltAz(double Azimuth, double Altitude)
         {
-            throw new ASCOM.MethodNotImplementedException("SyncToAltAz");
+            
         }
 
         public void SyncToCoordinates(double RightAscension, double Declination)
         {
-            throw new ASCOM.MethodNotImplementedException("SyncToCoordinates");
+            
         }
 
         public void SyncToTarget()
         {
-            throw new ASCOM.MethodNotImplementedException("SyncToTarget");
+           
         }
 
         public void Unpark()
         {
-            throw new ASCOM.MethodNotImplementedException("Unpark");
+            
         }
 
 

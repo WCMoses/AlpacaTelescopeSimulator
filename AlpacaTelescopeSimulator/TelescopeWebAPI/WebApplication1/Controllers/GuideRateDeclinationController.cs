@@ -12,7 +12,7 @@ namespace ASCOMCore.Controllers
     [ApiController]
     public class GuideRateDeclinationController : ControllerBase
     {
-        private string methodName = nameof(canslewController).Substring(0, nameof(canslewController).IndexOf("Controller"));
+        private string methodName = nameof(GuideRateDeclinationController).Substring(0, nameof(GuideRateDeclinationController).IndexOf("Controller"));
         // GET: api/GuideRateDeclination
 
         [HttpGet]
@@ -20,7 +20,7 @@ namespace ASCOMCore.Controllers
         {
             try
             {
-                var result = Program.Simulator.FocalLength;
+                var result = Program.Simulator.GuideRateDeclination;
                 Program.TraceLogger.LogMessage(methodName + " Get", "");
 
                 return new DoubleResponse(ClientTransactionID, ClientID, methodName, result);

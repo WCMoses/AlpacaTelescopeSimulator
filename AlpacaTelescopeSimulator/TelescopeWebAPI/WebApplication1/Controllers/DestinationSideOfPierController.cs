@@ -20,7 +20,7 @@ namespace ASCOMCore.Controllers
         public ActionResult<PierSideResponse> Get(int ClientID, int ClientTransactionID)
         {
  try
-            {
+            {//TODO: Not fully implemented
                 PierSide result = Program.Simulator.DestinationSideOfPier(1,1);
                 Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
                 return new PierSideResponse(ClientTransactionID, ClientID,result);

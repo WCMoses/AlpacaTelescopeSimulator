@@ -20,7 +20,7 @@ namespace ASCOMCore.Controllers
         {
             try
             {
-                bool result = Program.Simulator.CanPark;
+                bool result = Program.Simulator.CanUnpark;
                 Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
                 return new BoolResponse(ClientTransactionID, ClientID, methodName, result);
             }

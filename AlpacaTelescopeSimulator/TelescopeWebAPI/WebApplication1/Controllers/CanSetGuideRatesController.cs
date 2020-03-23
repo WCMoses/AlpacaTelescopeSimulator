@@ -20,7 +20,7 @@ namespace ASCOMCore.Controllers
         {
             try
             {
-                bool CanSetGuideRate = Program.Simulator.CanSetDeclinationRate;
+                bool CanSetGuideRate = Program.Simulator.CanSetGuideRates;
                 Program.TraceLogger.LogMessage(methodName + " Get", CanSetGuideRate.ToString());
                 return new BoolResponse(ClientTransactionID, ClientID, methodName, CanSetGuideRate);
             }

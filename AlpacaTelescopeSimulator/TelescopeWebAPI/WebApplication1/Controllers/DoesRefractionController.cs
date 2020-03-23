@@ -8,11 +8,11 @@ using ASCOMCore;
 namespace ASCOMCore.Controllers
 {
 
-  [Route("api/v1/telescope/{device_number}/[controller]")] 
+    [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
     public class doesrefractionController : ControllerBase
     {
- private string methodName = nameof(canslewController).Substring(0, nameof(canslewController).IndexOf("Controller"));
+        private string methodName = nameof(doesrefractionController).Substring(0, nameof(doesrefractionController).IndexOf("Controller"));
 
         // GET: api/DoesRefraction
         [HttpGet]

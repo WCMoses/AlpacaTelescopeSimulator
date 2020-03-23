@@ -19,7 +19,7 @@ namespace ASCOMCore.Controllers
         public ActionResult<BoolResponse> Get(int ClientID, int ClientTransactionID)
         {
             try
-            {
+            {//TODO: not fully implemented
                 bool CanMoveAxis = Program.Simulator.CanMoveAxis(TelescopeAxes.axisPrimary);
                 Program.TraceLogger.LogMessage(methodName + " Get", CanMoveAxis.ToString());
                 return new BoolResponse(ClientTransactionID, ClientID, methodName, CanMoveAxis);

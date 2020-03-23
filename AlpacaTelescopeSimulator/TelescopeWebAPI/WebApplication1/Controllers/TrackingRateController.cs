@@ -17,7 +17,7 @@ namespace ASCOMCore.Controllers
         [HttpGet]
         public ActionResult<DoubleResponse> Get(int ClientID, int ClientTransactionID)
         {
- try
+            try
             {//TODO: return real value
                 var result = Program.Simulator.TrackingRate;
                 Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
@@ -32,10 +32,12 @@ namespace ASCOMCore.Controllers
                 return response;
             }
         }
-        
+
         [HttpPut]
-        public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] double TrackingRate)
+        public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] ASCOM.DeviceInterface.DriveRates TrackingRate)
         {
+            Program.TraceLogger.LogMessage(methodName + " Put", "");
+            Program.Simulator.TrackingRate = TrackingRate;
             return new MethodResponse(ClientTransactionID, ClientID, methodName);
         }
 

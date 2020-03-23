@@ -8,26 +8,25 @@ using ASCOMCore;
 
 namespace ASCOMCore.Controllers
 {
-[Route("api/v1/telescope/{device_number}/[controller]")]
+    [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
     public class ispulseguidingController : ControllerBase
     {
-    private string methodName = nameof(canslewController).Substring(0, nameof(canslewController).IndexOf("Controller"));
+        private string methodName = nameof(ispulseguidingController).Substring(0, nameof(ispulseguidingController).IndexOf("Controller"));
 
         [HttpGet]
         public ActionResult<BoolResponse> Get(int ClientID, int ClientTransactionID)
         {
-                       try
+            try
             {
-                var result = Program.Simulator.IsPulseGuiding;
                 Program.TraceLogger.LogMessage(methodName + " Get", "");
-
-                return new BoolResponse(ClientTransactionID, ClientID, methodName,result);
+                var result = Program.Simulator.IsPulseGuiding;
+                return new BoolResponse(ClientTransactionID, ClientID, methodName, result);
             }
             catch (Exception ex)
             {
                 Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
-                var response = new BoolResponse(ClientTransactionID, ClientID, methodName,false);
+                var response = new BoolResponse(ClientTransactionID, ClientID, methodName, false);
                 response.ErrorMessage = ex.Message;
                 response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
                 return response;

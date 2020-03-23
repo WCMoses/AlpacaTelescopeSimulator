@@ -17,7 +17,21 @@ namespace ASCOMCore.Controllers
         [HttpPut]
         public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID)
         {
-            return new MethodResponse(ClientTransactionID, ClientID, methodName);
+            try
+            {
+                Program.TraceLogger.LogMessage(methodName, string.Format("abort slew-try"));
+                Program.Simulator.AbortSlew();
+                Program.TraceLogger.LogMessage(methodName, string.Format("Command: {0} completed OK", methodName));
+                return new MethodResponse(ClientTransactionID, ClientID, methodName);
+            }
+            catch (Exception ex)
+            {
+                Program.TraceLogger.LogMessage(methodName, string.Format("Exception: {0}", ex.ToString()));
+                MethodResponse response = new MethodResponse(ClientTransactionID, ClientID, methodName);
+                response.ErrorMessage = ex.Message;
+                response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
+                return response;
+            }
         }
     }
 }
