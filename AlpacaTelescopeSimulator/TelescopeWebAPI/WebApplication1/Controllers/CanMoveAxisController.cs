@@ -16,13 +16,13 @@ namespace ASCOMCore.Controllers
         private string methodName = nameof(canmoveaxisController).Substring(0, nameof(canmoveaxisController).IndexOf("Controller"));
 
         [HttpGet]
-        public ActionResult<BoolResponse> Get(int ClientID, int ClientTransactionID)
+        public ActionResult<BoolResponse> Get(int ClientID, int ClientTransactionID, TelescopeAxes Axis)
         {
             try
-            {//TODO: not fully implemented
-                bool CanMoveAxis = Program.Simulator.CanMoveAxis(TelescopeAxes.axisPrimary);
-                Program.TraceLogger.LogMessage(methodName + " Get", CanMoveAxis.ToString());
-                return new BoolResponse(ClientTransactionID, ClientID, methodName, CanMoveAxis);
+            {
+                bool result = Program.Simulator.CanMoveAxis(Axis);
+                Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
+                return new BoolResponse(ClientTransactionID, ClientID, methodName, result);
             }
             catch (Exception ex)
             {

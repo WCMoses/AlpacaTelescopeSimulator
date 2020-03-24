@@ -15,18 +15,18 @@ namespace ASCOMCore.Controllers
         private string methodName = nameof(trackingrateController).Substring(0, nameof(trackingrateController).IndexOf("Controller"));
         // GET: api/DeclinationRate
         [HttpGet]
-        public ActionResult<DoubleResponse> Get(int ClientID, int ClientTransactionID)
+        public ActionResult<IntResponse> Get(int ClientID, int ClientTransactionID)
         {
             try
-            {//TODO: return real value
+            { //TODO: Casting to int
                 var result = Program.Simulator.TrackingRate;
                 Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
-                return new DoubleResponse(ClientTransactionID, ClientID, methodName, 0);
+                return new IntResponse(ClientTransactionID, ClientID, methodName, (int)result);
             }
             catch (Exception ex)
             {
                 Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
-                DoubleResponse response = new DoubleResponse(ClientTransactionID, ClientID, methodName, 0);
+                IntResponse response = new IntResponse(ClientTransactionID, ClientID, methodName, 0);
                 response.ErrorMessage = ex.Message;
                 response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
                 return response;

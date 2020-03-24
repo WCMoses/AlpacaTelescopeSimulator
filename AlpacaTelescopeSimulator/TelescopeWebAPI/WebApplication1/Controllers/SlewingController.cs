@@ -26,7 +26,7 @@ namespace ASCOMCore.Controllers
             catch (Exception ex)
             {
                 Program.TraceLogger.LogMessage(methodName + " Get", string.Format("Exception: {0}", ex.ToString()));
-                var response = new BoolResponse(ClientTransactionID, ClientID, methodName, true);  //TODO:<-fix
+                var response = new BoolResponse(ClientTransactionID, ClientID, methodName, true);  
                 response.ErrorMessage = ex.Message;
                 response.ErrorNumber = ex.HResult - Program.ASCOM_ERROR_NUMBER_OFFSET;
                 return response;

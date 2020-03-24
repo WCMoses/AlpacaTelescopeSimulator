@@ -15,13 +15,11 @@ namespace ASCOMCore.Controllers
     {
         private string methodName = nameof(moveaxisController).Substring(0, nameof(moveaxisController).IndexOf("Controller"));
 
-        [HttpPut]  //TODO: implememt
-        public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] int axis, [FromForm] double rate)
+        [HttpPut]  
+        public ActionResult<MethodResponse> Put(int ClientID, int ClientTransactionID, [FromForm] TelescopeAxes axis, [FromForm] double rate)
         {
-            //TODO: Not fully implemented yet
-            Program.TraceLogger.LogMessage(methodName + " Get", "");
-            ASCOM.DeviceInterface.TelescopeAxes a = TelescopeAxes.axisPrimary;
-            Program.Simulator.MoveAxis(a,rate); //<<---  implement
+            Program.TraceLogger.LogMessage(methodName + " PUT", "");
+            Program.Simulator.MoveAxis(axis,rate); 
 
             return new MethodResponse(ClientTransactionID, ClientID, methodName);
         }

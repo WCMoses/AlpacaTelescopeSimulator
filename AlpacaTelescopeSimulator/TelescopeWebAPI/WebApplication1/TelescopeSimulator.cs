@@ -275,7 +275,7 @@ namespace ASCOMCore
 
         public IAxisRates AxisRates(TelescopeAxes Axis)
         {
-            return null; //TODO:  Huh??;
+            return null;  //Huh???
         }
 
         public bool CanMoveAxis(TelescopeAxes Axis)

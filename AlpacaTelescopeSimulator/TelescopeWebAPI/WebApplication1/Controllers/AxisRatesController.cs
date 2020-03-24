@@ -16,15 +16,15 @@ namespace ASCOMCore.Controllers
         private string methodName = nameof(axisratesController).Substring(0, nameof(axisratesController).IndexOf("Controller"));
 
         [HttpGet]
-        public ActionResult<AxisRatesResponse> Get(int ClientID, int ClientTransactionID)
+        public ActionResult<AxisRatesResponse> Get(int ClientID, int ClientTransactionID, TelescopeAxes Axis)
         {
 
             try
-            {  //TODO:not implemented
-                var rate = Program.Simulator.AxisRates(TelescopeAxes.axisPrimary);
-                Program.TraceLogger.LogMessage(methodName + " Get", rate.ToString());
-                return new AxisRatesResponse(ClientTransactionID, ClientID, methodName, null);
-                
+            {  //TODO: Return real value
+                var result = Program.Simulator.AxisRates(Axis);
+                Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
+
+                return new AxisRatesResponse(ClientTransactionID, ClientID, methodName,null);
             }
             catch (Exception ex)
             {

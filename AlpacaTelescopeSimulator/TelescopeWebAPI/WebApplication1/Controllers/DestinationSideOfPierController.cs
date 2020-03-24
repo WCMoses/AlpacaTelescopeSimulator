@@ -17,11 +17,11 @@ namespace ASCOMCore.Controllers
         private string methodName = nameof(destinationsideOfpierController).Substring(0, nameof(destinationsideOfpierController).IndexOf("Controller"));
 
         [HttpGet]
-        public ActionResult<PierSideResponse> Get(int ClientID, int ClientTransactionID)
+        public ActionResult<PierSideResponse> Get(int ClientID, int ClientTransactionID, double RightAscension, double Declination)
         {
  try
-            {//TODO: Not fully implemented
-                PierSide result = Program.Simulator.DestinationSideOfPier(1,1);
+            {
+                PierSide result = Program.Simulator.DestinationSideOfPier(RightAscension, RightAscension);
                 Program.TraceLogger.LogMessage(methodName + " Get", result.ToString());
                 return new PierSideResponse(ClientTransactionID, ClientID,result);
             }

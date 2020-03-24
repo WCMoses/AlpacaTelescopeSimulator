@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ASCOMCore;
-namespace ASCOMCore.Controllers  //TODO: implement
+namespace ASCOMCore.Controllers  
 {
     [Route("api/v1/telescope/{device_number}/[controller]")]
     [ApiController]
@@ -18,10 +18,9 @@ namespace ASCOMCore.Controllers  //TODO: implement
         {
             try
             {
-                //TODO: Not fullyimplemented
                 Program.TraceLogger.LogMessage(methodName + " Get", "");
                 var result = Program.Simulator.EquatorialSystem;
-                return new IntResponse(ClientTransactionID, ClientID, methodName,5);
+                return new IntResponse(ClientTransactionID, ClientID, methodName,(int)result);
             }
             catch (Exception ex)
             {
